@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerCtrl : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Animator anim;
 
     private Camera camera;
 
@@ -16,6 +17,7 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         camera = Camera.main;
     }
 
@@ -25,5 +27,13 @@ public class PlayerCtrl : MonoBehaviour
         ray = camera.ScreenPointToRay(Input.mousePosition);
 
         Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.green);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8))
+            {
+                agent.SetDestination(hit.point);
+                anim.SetFloat("forward", 1.0f);
+            }
+        }
     }
 }
