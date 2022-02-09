@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
     }
 
     //void OnMove(InputValue value) // SendMessage 방식
-    void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 dir = context.ReadValue<Vector2>();
 
@@ -81,7 +81,7 @@ public class Movement : MonoBehaviour
         h = dir.x;
     }
 
-    void OnFire(InputAction.CallbackContext ctx)
+    public void OnFire(InputAction.CallbackContext ctx)
     {
         Debug.Log("ctx.phase = " + ctx.phase);
         if (ctx.performed)
