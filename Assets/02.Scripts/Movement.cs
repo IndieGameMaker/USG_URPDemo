@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     float h;// => Input.GetAxis("Horizontal");
     float v;// => Input.GetAxis("Vertical");
 
+    Vector3 mousePosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +61,8 @@ public class Movement : MonoBehaviour
 
     void Turn()
     {
-        ray = camera.ScreenPointToRay(Input.mousePosition);
+
+        ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         float enter = 0.0f;
         plane.Raycast(ray, out enter);
 
@@ -89,4 +92,5 @@ public class Movement : MonoBehaviour
             Debug.Log("Fire !!!");
         }
     }
+
 }
