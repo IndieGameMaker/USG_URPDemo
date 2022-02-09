@@ -35,6 +35,7 @@ public class PlayerCtrl : MonoBehaviour
             {
                 agent.SetDestination(hit.point);
                 //anim.SetFloat("Forward", 1.0f); Hashtable을 거치는 방식
+                anim.SetFloat(hashForward, 1.0f);
             }
         }
     }
