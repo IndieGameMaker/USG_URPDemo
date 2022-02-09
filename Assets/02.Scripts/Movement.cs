@@ -78,4 +78,9 @@ public class Movement : MonoBehaviour
         v = dir.y;
         h = dir.x;
     }
+
+    void OnFire()
+    {
+        Debug.Log("Fire !!!");
+    }
 }
