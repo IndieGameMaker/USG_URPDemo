@@ -13,6 +13,10 @@ public class FollowCamera : MonoBehaviour
     [Range(0.0f, 10.0f)]
     public float height = 3.0f;
 
+    // 이동 Damping
+    public float moveDamping = 2.0f;
+    // 높이 Damping
+    public float heightDamping = 2.0f;
 
     // Start is called before the first frame update
     void Start()
