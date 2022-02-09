@@ -71,7 +71,8 @@ public class Movement : MonoBehaviour
         transform.localRotation = Quaternion.LookRotation(lookDir);
     }
 
-    void OnMove(InputValue value)
+    //void OnMove(InputValue value) // SendMessage 방식
+    void OnMove(InputAction.CallbackContext context)
     {
         Vector2 dir = value.Get<Vector2>();
         Debug.Log($"Move = ({dir.x} , {dir.y} )");
