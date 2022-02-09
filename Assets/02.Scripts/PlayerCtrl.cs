@@ -31,7 +31,7 @@ public class PlayerCtrl : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.green);
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8))
+            if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8 | 1 << 9))
             {
                 agent.SetDestination(hit.point);
                 //anim.SetFloat("Forward", 1.0f); Hashtable을 거치는 방식
