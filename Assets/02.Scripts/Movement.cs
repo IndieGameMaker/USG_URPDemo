@@ -74,14 +74,19 @@ public class Movement : MonoBehaviour
     //void OnMove(InputValue value) // SendMessage 방식
     void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 dir = value.Get<Vector2>();
+        Vector2 dir = context.ReadValue<Vector2>();
+
         Debug.Log($"Move = ({dir.x} , {dir.y} )");
         v = dir.y;
         h = dir.x;
     }
 
-    void OnFire()
+    void OnFire(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Fire !!!");
+        Debug.Log("ctx.phase = " + ctx.phase);
+        if (ctx.performed)
+        {
+            Debug.Log("Fire !!!");
+        }
     }
 }
