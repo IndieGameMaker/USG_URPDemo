@@ -38,5 +38,10 @@ public class PlayerCtrl : MonoBehaviour
                 anim.SetFloat(hashForward, 1.0f);
             }
         }
+
+        if (agent.velocity.sqrMagnitude >= 0.1f * 0.1f && agent.remainingDistance <= 0.1f)
+        {
+            anim.SetFloat(hashForward, 0.0f);
+        }
     }
 }
