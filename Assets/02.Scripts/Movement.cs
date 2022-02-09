@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
         Vector3 moveDir = (cameraForward * v) + (cameraRight * h);
         moveDir.Set(moveDir.x, 0.0f, moveDir.z);
 
-        controller.SimpleMove(moveDir * 10.0f);
+        controller.SimpleMove(moveDir.normalized * 10.0f);
 
         //주인공 캐릭터의 애니메이션
         float forward = Vector3.Dot(moveDir, transform.forward);
