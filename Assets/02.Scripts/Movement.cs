@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     // 가상의 Plane
     private Plane plane;
     private Ray ray;
-    private RaycastHit hit;
+    private Vector3 hitPoint;
 
     // 키보드 입력값
     float h => Input.GetAxis("Horizontal");
@@ -33,10 +33,40 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Move();
+        Turn();
     }
 
     void Move()
     {
+        Vector3 cameraForward = camera.transform.forward;
+        Vector3 cameraRight = camera.transform.right;
 
+        cameraForward.y = cameraRight.y = 0.0f;
+
+        Vector3 moveDir = (cameraForward * v) + (cameraRight * h);
+        moveDir.Set(moveDir.x, 0.0f, moveDir.z);
+
+        controller.SimpleMove(moveDir * 10.0f);
+
+        //주인공 캐릭터의 애니메이션
+        float forward = Vector3.Dot(moveDir, transform.forward);
+        float strafe = Vector3.Dot(moveDir, transform.right);
+
+        anim.SetFloat("Forward", forward);
+        anim.SetFloat("Strafe", strafe);
+    }
+
+    void Turn()
+    {
+        ray = camera.ScreenPointToRay(Input.mousePosition);
+        float enter = 0.0f;
+        plane.Raycast(ray, out enter);
+
+        hitPoint = ray.GetPoint(enter);
+
+        Vector3 lookDir = hitPoint - transform.position;
+        lookDir.y = 0.0f;
+
+        transform.localRotation = Quaternion.LookRotation(lookDir);
     }
 }
