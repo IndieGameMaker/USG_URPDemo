@@ -14,6 +14,8 @@ public class PlayerCtrl : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
+    private int hashForward = Animator.StringToHash("Forward");
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -32,7 +34,7 @@ public class PlayerCtrl : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f, 1 << 8))
             {
                 agent.SetDestination(hit.point);
-                anim.SetFloat("forward", 1.0f);
+                //anim.SetFloat("Forward", 1.0f); Hashtable을 거치는 방식
             }
         }
     }
