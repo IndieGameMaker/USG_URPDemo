@@ -13,7 +13,7 @@ public class MonsterCtrl : MonoBehaviour
 
     void Start()
     {
-        ws = new WaitForSeconds(0.3f);
+        ws = new WaitForSeconds(0.1f);
         targetTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
         agent = GetComponent<NavMeshAgent>();
         //회전처리를 제한함
