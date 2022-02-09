@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class Movement : MonoBehaviour
     private Vector3 hitPoint;
 
     // 키보드 입력값
-    float h => Input.GetAxis("Horizontal");
-    float v => Input.GetAxis("Vertical");
+    float h;// => Input.GetAxis("Horizontal");
+    float v;// => Input.GetAxis("Vertical");
 
     // Start is called before the first frame update
     void Start()
@@ -68,5 +69,13 @@ public class Movement : MonoBehaviour
         lookDir.y = 0.0f;
 
         transform.localRotation = Quaternion.LookRotation(lookDir);
+    }
+
+    void OnMove(InputValue value)
+    {
+        Vector2 dir = value.Get<Vector2>();
+        Debug.Log($"Move = ({dir.x} , {dir.y} )");
+        v = dir.y;
+        h = dir.x;
     }
 }
