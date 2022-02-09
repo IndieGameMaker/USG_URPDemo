@@ -17,6 +17,9 @@ public class FollowCamera : MonoBehaviour
     public float moveDamping = 2.0f;
     // 높이 Damping
     public float heightDamping = 2.0f;
+    // LookAt Point
+    [Range(0.0f, 10.0f)]
+    public float lookAtPoint = 2.0f;
 
     void LateUpdate()
     {
@@ -25,6 +28,12 @@ public class FollowCamera : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, movePos, Time.deltaTime * moveDamping);
 
         // LookAt
-        transform.LookAt(target.position);
+        transform.LookAt(target.position + Vector3.up * lookAtPoint);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(target.position + Vector3.up * lookAtPoint, 0.2f)
     }
 }
