@@ -18,15 +18,13 @@ public class FollowCamera : MonoBehaviour
     // 높이 Damping
     public float heightDamping = 2.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    void LateUpdate()
     {
+        Vector3 movePos = target.position - (Vector3.forward * distance) + (Vector3.up * height);
+        // Smooth Move
+        transform.position = Vector3.Lerp(transform.position, movePos, Time.deltaTime * moveDamping);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        // LookAt
+        transform.LookAt(target.position);
     }
 }
